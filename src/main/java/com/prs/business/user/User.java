@@ -18,7 +18,7 @@ public class User {
 	private String email;
 	private boolean isReviewer;
 	private boolean isAdmin;
-	
+
 	public User(int id, String userName, String password, String firstName, String lastName, String phoneNumber,
 			String email, boolean isReviewer, boolean isAdmin) {
 		super();
@@ -32,12 +32,23 @@ public class User {
 		this.isReviewer = isReviewer;
 		this.isAdmin = isAdmin;
 	}
-	
+
 	public User() {
 		super();
 	}
 
-
+	public User(String userName, String password, String firstName, String lastName, String phoneNumber, String email,
+			boolean isReviewer, boolean isAdmin) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.isReviewer = isReviewer;
+		this.isAdmin = isAdmin;
+	}
 
 	public int getId() {
 		return id;
@@ -117,7 +128,5 @@ public class User {
 				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", email=" + email + ", isReviewer="
 				+ isReviewer + ", isAdmin=" + isAdmin + "]";
 	}
-	
-	
-}
 
+}
