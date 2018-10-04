@@ -24,8 +24,16 @@ public class Product {
 	private String photoPath;
 
 	public Product(int id, Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
-		super();
 		this.id = id;
+		this.vendor = vendor;
+		this.partNumber = partNumber;
+		this.name = name;
+		this.price = price;
+		this.unit = unit;
+		this.photoPath = photoPath;
+	}
+	
+	public Product(Vendor vendor, String partNumber, String name, double price, String unit, String photoPath) {
 		this.vendor = vendor;
 		this.partNumber = partNumber;
 		this.name = name;
@@ -35,7 +43,6 @@ public class Product {
 	}
 
 	public Product(Vendor vendor, String partNumber, String name, double price) {
-		super();
 		this.vendor = vendor;
 		this.partNumber = partNumber;
 		this.name = name;

@@ -36,8 +36,20 @@ public class PurchaseRequest {
 
 	public PurchaseRequest(int id, User user, String description, String justification, LocalDate dateNeeded,
 			String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
-		super();
 		this.id = id;
+		this.user = user;
+		this.description = description;
+		this.justification = justification;
+		this.dateNeeded = dateNeeded;
+		this.deliveryMode = deliveryMode;
+		this.status = status;
+		this.total = total;
+		this.submittedDate = submittedDate;
+		this.reasonForRejection = reasonForRejection;
+	}
+	
+	public PurchaseRequest(User user, String description, String justification, LocalDate dateNeeded,
+			String deliveryMode, String status, double total, LocalDateTime submittedDate, String reasonForRejection) {
 		this.user = user;
 		this.description = description;
 		this.justification = justification;
@@ -50,7 +62,6 @@ public class PurchaseRequest {
 	}
 
 	public PurchaseRequest() {
-		super();
 	}
 
 	public int getId() {

@@ -23,15 +23,19 @@ public class PurchaseRequestLineItem {
 	private int quantity;
 
 	public PurchaseRequestLineItem(int id, PurchaseRequest purchaseRequest, Product product, int quantity) {
-		super();
 		this.id = id;
 		this.purchaseRequest = purchaseRequest;
 		this.product = product;
 		this.quantity = quantity;
 	}
 
+	public PurchaseRequestLineItem(PurchaseRequest purchaseRequest, Product product, int quantity) {
+		this.purchaseRequest = purchaseRequest;
+		this.product = product;
+		this.quantity = quantity;
+	}
+
 	public PurchaseRequestLineItem() {
-		super();
 	}
 
 	public int getId() {
