@@ -1,5 +1,6 @@
 package com.prs.web;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.prs.business.product.Product;
 import com.prs.business.purchaserequest.PurchaseRequest;
 import com.prs.business.purchaserequest.PurchaseRequestRepository;
 import com.prs.util.JsonResponse;
@@ -34,6 +34,16 @@ public class PurchaseRequestController {
 		catch (Exception e) {
 		return JsonResponse.getErrorInstance("Purchase Request list failure: "+e.getMessage(), e);
 		}
+	}
+	@GetMapping("/ListReview")
+	public @ResponseBody JsonResponse getAllPurchaseRequestForReview(@RequestParam int id) {
+		try {
+			return JsonResponse.getInstance(purchaseRequestRepository.findAllByUserIdNotAndStatus(id, "Review"));
+		}
+		catch (Exception e) {
+			return JsonResponse.getErrorInstance("Purchase request list failure: "+e.getMessage(), e);
+		}
+		
 	}
 
 	@GetMapping("/Get/{id}")
@@ -81,6 +91,26 @@ public class PurchaseRequestController {
 		catch (Exception ex) {
 			return JsonResponse.getErrorInstance(ex.getMessage(), ex);
 		}
+	}
+	  
+	@PostMapping("/SubmitForReview")
+	public @ResponseBody JsonResponse submitForReview (@RequestBody PurchaseRequest purchaseRequest) {
+		if (purchaseRequest.getTotal()<=51)
+			purchaseRequest.setStatus(PurchaseRequest.STATUS_APPROVED);
+		else
+			purchaseRequest.setStatus(PurchaseRequest.STATUS_REVIEW);
+		purchaseRequest.setSubmittedDate(LocalDateTime.now());
+		return savePurchaseRequest(purchaseRequest);
+	}
+	@PostMapping("/ApprovePR")
+	public @ResponseBody JsonResponse approvePurchaseRequest (@RequestBody PurchaseRequest purchaseRequest) {
+		purchaseRequest.setStatus(PurchaseRequest.STATUS_APPROVED);
+		return savePurchaseRequest(purchaseRequest);
+	}
+	@PostMapping("/RejectedPR")
+	public @ResponseBody JsonResponse rejectPurchaseRequest (@RequestBody PurchaseRequest purchaseRequest) {
+		purchaseRequest.setStatus(PurchaseRequest.STATUS_REJECTED);
+		return savePurchaseRequest(purchaseRequest);
 	}
 
 }

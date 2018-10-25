@@ -49,11 +49,13 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/Login")
+	@PostMapping("/Authenticate")
 	public @ResponseBody JsonResponse authenticate(@RequestBody User user) {
 		try {
 			User u = userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
-			return JsonResponse.getInstance(user);
+//			if (user.isPresent())
+				return JsonResponse.getInstance(u);
+//				return JsonResponse.getErrorInstance("Username or Password not found", null);
 		}
 		catch(Exception e) {
 			return JsonResponse.getErrorInstance("Error authenticating user: "+ e.getMessage(), null);
