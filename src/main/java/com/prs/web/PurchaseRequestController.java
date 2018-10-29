@@ -42,8 +42,7 @@ public class PurchaseRequestController {
 		}
 		catch (Exception e) {
 			return JsonResponse.getErrorInstance("Purchase request list failure: "+e.getMessage(), e);
-		}
-		
+		}		
 	}
 
 	@GetMapping("/Get/{id}")

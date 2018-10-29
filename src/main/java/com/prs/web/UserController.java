@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.prs.business.user.User;
@@ -49,13 +48,14 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/Authenticate")
+	@PostMapping("/Login")
 	public @ResponseBody JsonResponse authenticate(@RequestBody User user) {
 		try {
 			User u = userRepository.findByUserNameAndPassword(user.getUserName(), user.getPassword());
-//			if (user.isPresent())
+			if (u!=null)
 				return JsonResponse.getInstance(u);
-//				return JsonResponse.getErrorInstance("Username or Password not found", null);
+			else
+				return JsonResponse.getErrorInstance("User not found", null);
 		}
 		catch(Exception e) {
 			return JsonResponse.getErrorInstance("Error authenticating user: "+ e.getMessage(), null);
