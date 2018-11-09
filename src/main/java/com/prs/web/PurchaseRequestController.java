@@ -52,10 +52,10 @@ public class PurchaseRequestController {
 			if (purchaseRequest.isPresent())
 				return JsonResponse.getInstance(purchaseRequest.get());
 			else
-				return JsonResponse.getErrorInstance("Product not found for id: "+id, null);
+				return JsonResponse.getErrorInstance("Product not found for id: "+id);
 		}
 		catch (Exception e) {		
-			return JsonResponse.getErrorInstance("Error getting product: "+e.getMessage(), null);
+			return JsonResponse.getErrorInstance("Error getting product: "+e.getMessage());
 		}
 	}
 
@@ -111,5 +111,4 @@ public class PurchaseRequestController {
 		purchaseRequest.setStatus(PurchaseRequest.STATUS_REJECTED);
 		return savePurchaseRequest(purchaseRequest);
 	}
-
 }

@@ -36,6 +36,10 @@ public class PurchaseRequestLineItem {
 	}
 
 	public PurchaseRequestLineItem() {
+		this.id = 0;
+		this.purchaseRequest = null;
+		this.product = null;
+		this.quantity = 0;
 	}
 
 	public int getId() {

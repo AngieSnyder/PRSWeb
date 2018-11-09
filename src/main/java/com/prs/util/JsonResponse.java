@@ -59,5 +59,11 @@ public class JsonResponse {
 	public static JsonResponse getErrorInstance(String m, Exception e) {
 		return new JsonResponse(-1, m, null, e);
 	}	
+	public static JsonResponse getErrorInstance(String m) {
+		return new JsonResponse(-1, m, null, null);
+	}
+	public static JsonResponse getErrorInstance(Object d, String m) {
+		return new JsonResponse(-1, m, null, null);
+	}
 
 }

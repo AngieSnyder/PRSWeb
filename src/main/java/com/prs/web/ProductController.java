@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.prs.business.product.Product;
 import com.prs.business.product.ProductRepository;
 import com.prs.util.JsonResponse;
+
 @CrossOrigin
 @Controller
 @RequestMapping("/Product")
@@ -41,10 +42,10 @@ public class ProductController {
 			if (product.isPresent())
 				return JsonResponse.getInstance(product.get());
 			else
-				return JsonResponse.getErrorInstance("Product not found for id: "+id, null);
+				return JsonResponse.getErrorInstance("Product not found for id: "+id);
 		}
 		catch (Exception e) {		
-			return JsonResponse.getErrorInstance("Error getting product: "+e.getMessage(), null);
+			return JsonResponse.getErrorInstance("Error getting product: "+e.getMessage());
 		}
 	}
 

@@ -18,7 +18,7 @@ import com.prs.business.user.UserRepository;
 import com.prs.util.JsonResponse;
 @CrossOrigin
 @Controller
-@RequestMapping("/Users")
+@RequestMapping("/User")
 public class UserController {
 
 	@Autowired
@@ -41,10 +41,10 @@ public class UserController {
 			if (user.isPresent())
 				return JsonResponse.getInstance(user.get());
 			else
-				return JsonResponse.getErrorInstance("User not found for id: " + id, null);
+				return JsonResponse.getErrorInstance("User not found for id: " + id);
 		}
 		catch (Exception e) {
-			return JsonResponse.getErrorInstance("Error getting user: " + e.getMessage(), null);
+			return JsonResponse.getErrorInstance("Error getting user: " + e.getMessage());
 		}
 	}
 	
@@ -55,10 +55,10 @@ public class UserController {
 			if (u!=null)
 				return JsonResponse.getInstance(u);
 			else
-				return JsonResponse.getErrorInstance("User not found", null);
+				return JsonResponse.getErrorInstance("User not found");
 		}
 		catch(Exception e) {
-			return JsonResponse.getErrorInstance("Error authenticating user: "+ e.getMessage(), null);
+			return JsonResponse.getErrorInstance("Error authenticating user: "+ e.getMessage());
 		}
 		
 	}
